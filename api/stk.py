@@ -2,7 +2,10 @@
 import requests
 import base64
 from datetime import datetime
-from auth_token import getaccess_token
+try:
+    from .auth_token import getaccess_token
+except ImportError:
+    from auth_token import getaccess_token
 
 #post url
 STK_URL = "https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest"

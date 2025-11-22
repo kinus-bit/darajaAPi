@@ -1,6 +1,9 @@
 #api for generating a dynamic M-PESA QR Code.
 import requests
-from auth_token import getaccess_token
+try:
+    from .auth_token import getaccess_token
+except ImportError:
+    from auth_token import getaccess_token
 
 #post url
 STK_URL = "https://sandbox.safaricom.co.ke/mpesa/qrcode/v1/generate"
