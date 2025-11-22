@@ -1,5 +1,4 @@
 from fastapi import FastAPI
-from mangum import Mangum
 import requests
 import base64
 from datetime import datetime
@@ -98,7 +97,11 @@ def GenerateQR():
 # ========== FASTAPI ROUTES ==========
 @app.get('/')
 def home():
-    return {'message': 'hello world'}
+    return {'message': 'hello world', 'status': 'ok'}
+
+@app.get('/health')
+def health():
+    return {'status': 'healthy', 'service': 'daraja-api'}
 
 @app.get("/get_token")
 def get_token():
@@ -124,5 +127,4 @@ def generate_qr():
     except Exception as e:
         return {"error": str(e), "type": type(e).__name__}
 
-# Export handler for Vercel
-handler = Mangum(app)
+# Vercel auto-detects FastAPI app
