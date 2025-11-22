@@ -132,11 +132,7 @@ def GenerateQR():
 # ========== FASTAPI ROUTES ==========
 @app.get('/')
 def home():
-    return {'message': 'hello world', 'status': 'ok'}
-
-@app.get('/health')
-def health():
-    return {'status': 'healthy', 'service': 'daraja-api'}
+    return {'message': 'This is daraja API testing!!'}
 
 @app.get("/get_token")
 def get_token():
