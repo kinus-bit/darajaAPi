@@ -2,14 +2,20 @@
 import requests
 from auth_token import getaccess_token
 
-#calling access token
-access_token = getaccess_token()['access_token']
-
 #post url
 STK_URL = "https://sandbox.safaricom.co.ke/mpesa/qrcode/v1/generate"
 
 def GenerateQR():
     try:
+        #calling access token - we moved it inside function as when we call it at import
+        # time,it can fail in serverless environment
+        token_response = getaccess_token()
+
+        #error handling before we access the access_token
+        if 'error' in token_response:
+            return {"error": f"Failed to get access token: {token_response['error']}"}
+        access_token = token_response['access_token']
+        
         #headers with content type and authhorization
         header = {
             "content-Type":"application/json",
