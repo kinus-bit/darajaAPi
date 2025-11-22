@@ -109,7 +109,7 @@ def get_token():
         access_token = getaccess_token()
         return access_token
     except Exception as e:
-        return {"error": str(e), "type": type(e).__name__}
+        return {"error": str(e)}
 
 @app.post("/stk_push")
 def stk_code():
@@ -117,7 +117,7 @@ def stk_code():
         stk = stk_push()
         return stk
     except Exception as e:
-        return {"error": str(e), "type": type(e).__name__}
+        return {"error": str(e)}
 
 @app.post("/generate_token")
 def generate_qr():
@@ -125,6 +125,5 @@ def generate_qr():
         generate = GenerateQR()
         return generate
     except Exception as e:
-        return {"error": str(e), "type": type(e).__name__}
+        return {"error": str(e)}
 
-# Vercel auto-detects FastAPI app
