@@ -1,4 +1,10 @@
+import sys
+import os
+# Add the api directory to the path for imports
+sys.path.insert(0, os.path.dirname(__file__))
+
 from fastapi import FastAPI
+from mangum import Mangum
 from auth_token import getaccess_token
 from stk import stk_push
 from qrgenerate import GenerateQR
@@ -26,4 +32,7 @@ def stk_code():
 def generate_qr():
     generate = GenerateQR()
     return generate
+
+# Export handler for Vercel
+handler = Mangum(app)
 
