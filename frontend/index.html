@@ -35,37 +35,28 @@
           <button class="pay-btn">Click to pay</button>
         </div>
       </div>
-<div class="dialog-position">
-  <dialog id="phoneDialog" class="dialog-box">
-        <form method="dialog" id="dialog-content">
-          <h2>💳 Complete Your Payment</h2>
-          <p class="payment-subtitle">Pay securely with M-Pesa</p>
+      <div class="dialog-position">
+        <dialog id="phoneDialog" class="dialog-box">
+          <form method="dialog" id="dialog-content">
+            <h2>💳 Complete Your Payment</h2>
+            <p class="payment-subtitle">Pay securely with M-Pesa</p>
+            <h3>Enter safaricom Phone Number</h3>
+            <input
+              type="text"
+              id="phoneNumber"
+              name="phoneNumber"
+              placeholder="e.g., 0712345678"
+              class="dialog-input"
+              required
+            />
+            <div class="dialog-buttons">
+              <button class="btn primary" id="payButton">Submit</button>
+              <button class="btn secondary">Cancel</button>
+            </div>
+          </form>
+        </dialog>
+      </div>
 
-          <div class="success-message" id="successMessage">
-            ✓ Payment request sent! Please check your phone.
-          </div>
-
-          <div class="error-message" id="errorMessage">
-            ✗ Payment failed. Please try again.
-          </div>
-          <h3>Enter safaricom Phone Number</h3>
-          <input
-            type="text"
-            id="phoneNumber"
-            name="phoneNumber"
-            placeholder="e.g., 0712345678"
-            class="dialog-input"
-            required
-          />
-          <div class="dialog-buttons">
-            <button class="btn primary" id="payButton">Submit</button>
-            <button class="btn secondary">Cancel</button>
-          </div>
-        </form>
-      </dialog>
-
-</div>
-      
       <footer>
         <p>&copy; 2025 Kinus WiFi. All rights reserved.</p>
       </footer>

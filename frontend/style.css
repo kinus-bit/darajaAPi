@@ -1,170 +1,116 @@
 * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #0f172a;
-            min-height: 100vh;
-            padding: 2rem 1rem;
-        }
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: #0f172a;
+  min-height: 100vh;
+  padding: 2rem 1rem;
+}
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+.container {
+  max-width: 1200px;
+   min-height: 100vh;
+  margin: 0 auto;
+}
 
-        header {
-            text-align: center;
-            margin-bottom: 3rem;
-            animation: fadeInDown 0.8s ease;
-        }
+header {
+  text-align: center;
+  margin-bottom: 3rem;
+  animation: fadeInDown 0.8s ease;
+}
 
-        h1 {
-            color: white;
-            font-size: 2.5rem;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            margin-bottom: 0.5rem;
-        }
+h1 {
+  color: white;
+  font-size: 2.5rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  margin-bottom: 0.5rem;
+}
 
-        .tagline {
-            color: rgba(255,255,255,0.9);
-            font-size: 1.1rem;
-            letter-spacing: 1px;
-        }
+.tagline {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+}
 
-        .packages-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
+.packages-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
 
-        .package-card {
-            background: #1e293b;
-            border-radius: 20px;
-            padding: 2rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            border: 3px solid transparent;
-        }
+.package-card {
+  background: #1e293b;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  border: 3px solid transparent;
+}
+.package-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
 
-        .package-card.selected {
-            border-color: #10b981;
-            transform: translateY(-5px);
-        }
+.package-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #f1f5f9;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
 
-        .package-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-        }
+.package-price {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #10b981;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+.pay-btn{
+    padding:10px;
+    border-radius: 10px;
+    
+    
+}
 
-        .package-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            margin: 0 auto 1rem;
-        }
+.payment-subtitle {
+  color: #94a3b8;
+  text-align: center;
+  margin-bottom: 2rem;
+}
 
-        .package-card:nth-child(1) .package-icon {
-            background: #ef4444;
-        }
-
-        .package-card:nth-child(2) .package-icon {
-            background: #3b82f6;
-        }
-
-        .package-card:nth-child(3) .package-icon {
-            background: #10b981;
-        }
-
-        .package-card:nth-child(4) .package-icon {
-            background: #f59e0b;
-        }
-
-        .package-name {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #f1f5f9;
-            text-align: center;
-            margin-bottom: 0.5rem;
-        }
-
-        .package-price {
-            font-size: 2rem;
-            font-weight: 800;
-            color: #10b981;
-            text-align: center;
-            margin-bottom: 1rem;
-        }
-
-        .package-features {
-            list-style: none;
-            margin-bottom: 1rem;
-        }
-
-        .package-features li {
-            padding: 0.5rem 0;
-            color: #94a3b8;
-            text-align: center;
-        }
-
-        .payment-section {
-            background: #1e293b;
-            border-radius: 20px;
-            padding: 2.5rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            animation: fadeInUp 0.8s ease;
-        }
-
-        .payment-section h2 {
-            color: #f1f5f9;
-            font-size: 1.8rem;
-            margin-bottom: 0.5rem;
-            text-align: center;
-        }
-
-        .payment-subtitle {
-            color: #94a3b8;
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
 /* Background blur when dialog opens */
 ::backdrop {
   background: rgba(0, 0, 0, 0.55);
   backdrop-filter: blur(3px);
 }
 .dialog-position {
-display: flex;
-align-items: center;
-justify-items: center;
-
+  display: flex;
+  align-items: center;
+  justify-items: center;
 }
 /* Dialog box styles */
 .dialog-box {
   border: none;
   padding: 15px;
-  height:300px;
+  height: 300px;
 
   border-radius: 12px;
   width: 500px;
   justify-items: center;
-    position: fixed;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -221,11 +167,11 @@ justify-items: center;
 .btn.primary {
   background: #38f738;
   color: #fff;
-  margin-top:45px;
+  margin-top: 45px;
 }
 
 .btn.secondary {
- margin-top:45px;
+  margin-top: 45px;
   background: #f11527;
 }
 
@@ -233,147 +179,64 @@ justify-items: center;
   opacity: 0.9;
 }
 
+input[type="tel"],
+input[type="text"] {
+  width: 100%;
+  padding: 1rem;
+  border: 2px solid #334155;
+  border-radius: 10px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+  outline: none;
+  background: #0f172a;
+  color: #f1f5f9;
+}
 
-        label {
-            display: block;
-            color: #f1f5f9;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            font-size: 0.95rem;
-        }
+input[type="tel"]:focus,
+input[type="text"]:focus {
+  border-color: #10b981;
+}
 
-        input[type="tel"],
-        input[type="text"] {
-            width: 100%;
-            padding: 1rem;
-            border: 2px solid #334155;
-            border-radius: 10px;
-            font-size: 1rem;
-            transition: border-color 0.3s ease;
-            outline: none;
-            background: #0f172a;
-            color: #f1f5f9;
-        }
+footer {
+  text-align: center;
+  color: white;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
 
-        input[type="tel"]:focus,
-        input[type="text"]:focus {
-            border-color: #10b981;
-        }
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
-        .input-hint {
-            color: #64748b;
-            font-size: 0.85rem;
-            margin-top: 0.3rem;
-        }
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
-        .selected-package-info {
-            background: #10b981;
-            color: white;
-            padding: 1.5rem;
-            border-radius: 10px;
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
+@media (max-width: 768px) {
+  h1 {
+    font-size: 1.8rem;
+  }
 
-        .selected-package-info h3 {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-        }
+  .packages-grid {
+    grid-template-columns: 1fr;
+  }
 
-        .selected-package-info p {
-            font-size: 2rem;
-            font-weight: 800;
-        }
-
-        .btn-pay {
-            width: 100%;
-            padding: 1.2rem;
-            background: #10b981;
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-size: 1.1rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .btn-pay:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(16, 185, 129, 0.4);
-        }
-
-        .btn-pay:active {
-            transform: translateY(0);
-        }
-
-        .btn-pay:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-        }
-
-        footer {
-            text-align: center;
-            color: white;
-            margin-top: 3rem;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255,255,255,0.2);
-        }
-
-        .success-message {
-            background: #43e97b;
-            color: white;
-            padding: 1rem;
-            border-radius: 10px;
-            margin-bottom: 1rem;
-            text-align: center;
-            display: none;
-        }
-
-        .error-message {
-            background: #f5576c;
-            color: white;
-            padding: 1rem;
-            border-radius: 10px;
-            margin-bottom: 1rem;
-            text-align: center;
-            display: none;
-        }
-
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 1.8rem;
-            }
-
-            .packages-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .payment-section {
-                padding: 1.5rem;
-            }
-        }
+  .payment-section {
+    padding: 1.5rem;
+  }
+}

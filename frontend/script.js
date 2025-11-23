@@ -36,7 +36,7 @@ submitPhone.addEventListener("click", async (e) => {
   console.log("sending to fastdaraja logic:", data);
   async () => {
     try {
-      const response = await fetch("https://daraja-a-pi.vercel.app/stk_push", {
+      const response = await fetch("http://0.0.0.0:8000/stk_push", {
         method: "POST",
         headers: {
           "content-Type": "application/json",
