@@ -144,6 +144,95 @@
         .form-group {
             margin-bottom: 1.5rem;
         }
+/* Background blur when dialog opens */
+::backdrop {
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(3px);
+}
+.dialog-position {
+display: flex;
+align-items: center;
+justify-items: center;
+
+}
+/* Dialog box styles */
+.dialog-box {
+  border: none;
+  padding: 15px;
+  height:300px;
+
+  border-radius: 12px;
+  width: 500px;
+  justify-items: center;
+    position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Inner content */
+.dialog-content {
+  padding: 20px;
+  background: #fff;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Title */
+.dialog-content h3 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Input field */
+.dialog-input {
+  padding: 10px;
+  font-size: 50px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  outline: none;
+  transition: 0.2s;
+}
+
+.dialog-input:focus {
+  border-color: #4a90e2;
+}
+
+/* Buttons */
+.dialog-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.btn {
+  padding: 10px;
+  border: none;
+  width: 30%;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.btn.primary {
+  background: #38f738;
+  color: #fff;
+  margin-top:45px;
+}
+
+.btn.secondary {
+ margin-top:45px;
+  background: #f11527;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
 
         label {
             display: block;
