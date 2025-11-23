@@ -1,117 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Kinus WiFi - M-Pesa Payment</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
     <div class="container">
-        <header>
-            <h1>🌐 KINUS 24/7 WIFI</h1>
-            <p class="tagline">Fast, Reliable, Always Connected</p>
-        </header>
+      <header>
+        <h1>KINUS 24/7 WIFI</h1>
+        <p class="tagline">Fast, Reliable, Always Connected</p>
+      </header>
 
-        <div class="packages-grid">
-            <div class="package-card" data-package="hourly" data-price="20">
-                <div class="package-icon">⚡</div>
-                <h3 class="package-name">Hourly</h3>
-                <div class="package-price">KSH 20</div>
-                <ul class="package-features">
-                    <li>⏱️ 1 Hour Access</li>
-                    <li>🚀 High Speed</li>
-                    <li>📱 1 Device</li>
-                </ul>
-            </div>
-
-            <div class="package-card" data-package="daily" data-price="50">
-                <div class="package-icon">📅</div>
-                <h3 class="package-name">Daily</h3>
-                <div class="package-price">KSH 50</div>
-                <ul class="package-features">
-                    <li>⏱️ 24 Hours Access</li>
-                    <li>🚀 High Speed</li>
-                    <li>📱 2 Devices</li>
-                </ul>
-            </div>
-
-            <div class="package-card" data-package="weekly" data-price="300">
-                <div class="package-icon">📆</div>
-                <h3 class="package-name">Weekly</h3>
-                <div class="package-price">KSH 300</div>
-                <ul class="package-features">
-                    <li>⏱️ 7 Days Access</li>
-                    <li>🚀 Ultra Fast</li>
-                    <li>📱 3 Devices</li>
-                </ul>
-            </div>
-
-            <div class="package-card" data-package="monthly" data-price="1000">
-                <div class="package-icon">🌟</div>
-                <h3 class="package-name">Monthly</h3>
-                <div class="package-price">KSH 1000</div>
-                <ul class="package-features">
-                    <li>⏱️ 30 Days Access</li>
-                    <li>🚀 Maximum Speed</li>
-                    <li>📱 Unlimited Devices</li>
-                </ul>
-            </div>
+      <div class="packages-grid">
+        <div class="package-card">
+          <h3 class="package-name">Hourly</h3>
+          <div class="package-price">KSH 10</div>
+          <button class="pay-btn">Click to pay</button>
         </div>
-
-        <div class="payment-section">
-            <h2>💳 Complete Your Payment</h2>
-            <p class="payment-subtitle">Pay securely with M-Pesa</p>
-
-            <div class="success-message" id="successMessage">
-                ✓ Payment request sent! Please check your phone.
-            </div>
-
-            <div class="error-message" id="errorMessage">
-                ✗ Payment failed. Please try again.
-            </div>
-
-            <div class="selected-package-info" id="selectedPackage" style="display: none;">
-                <h3>Selected Package</h3>
-                <p id="packageDisplay">-</p>
-            </div>
-
-            <form id="paymentForm" method="post" action="main.py">
-                <div class="form-group">
-                    <label for="phoneNumber">M-Pesa Phone Number</label>
-                    <input 
-                        type="tel" 
-                        id="phoneNumber" 
-                        name="phoneNumber" 
-                        placeholder="e.g., 0712345678"
-                        pattern="[0-9]{10}"
-                        required
-                    >
-                    <p class="input-hint">Enter your Safaricom number (10 digits)</p>
-                </div>
-
-                <div class="form-group">
-                    <label for="userName">Your Name (Optional)</label>
-                    <input 
-                        type="text" 
-                        id="userName" 
-                        name="userName" 
-                        placeholder="e.g., John Doe"
-                    >
-                </div>
-
-                <button type="submit" class="btn-pay" id="payButton" disabled>
-                    Select a Package to Continue
-                </button>
-            </form>
+        <div class="package-card">
+          <h3 class="package-name">24 Hours Access</h3>
+          <div class="package-price">50</div>
+          <button class="pay-btn">Click to pay</button>
         </div>
+        <div class="package-card">
+          <h3 class="package-name">7 Days Access</h3>
+          <div class="package-price">300</div>
+          <button class="pay-btn">Click to pay</button>
+        </div>
+        <div class="package-card">
+          <h3 class="package-name">30 Days Access</h3>
+          <div class="package-price">1000</div>
+          <button class="pay-btn">Click to pay</button>
+        </div>
+      </div>
+<div class="dialog-position">
+  <dialog id="phoneDialog" class="dialog-box">
+        <form method="dialog" id="dialog-content">
+          <h2>💳 Complete Your Payment</h2>
+          <p class="payment-subtitle">Pay securely with M-Pesa</p>
 
-        <footer>
-            <p>&copy; 2025 Kinus WiFi. All rights reserved.</p>
-        </footer>
+          <div class="success-message" id="successMessage">
+            ✓ Payment request sent! Please check your phone.
+          </div>
+
+          <div class="error-message" id="errorMessage">
+            ✗ Payment failed. Please try again.
+          </div>
+          <h3>Enter safaricom Phone Number</h3>
+          <input
+            type="text"
+            id="phoneNumber"
+            name="phoneNumber"
+            placeholder="e.g., 0712345678"
+            class="dialog-input"
+            required
+          />
+          <div class="dialog-buttons">
+            <button class="btn primary" id="payButton">Submit</button>
+            <button class="btn secondary">Cancel</button>
+          </div>
+        </form>
+      </dialog>
+
+</div>
+      
+      <footer>
+        <p>&copy; 2025 Kinus WiFi. All rights reserved.</p>
+      </footer>
     </div>
 
     <script src="script.js"></script>
-        
-</body>
+  </body>
 </html>
