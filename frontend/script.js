@@ -1,122 +1,55 @@
 let selectedPackage = null;
-        let selectedPrice = 0;
+let selectedPrice = null;
+const dialog = document.getElementById("phoneDialog");
+const submitPhone = document.getElementById("payButton");
 
-        // Handle package selection
-        document.querySelectorAll('.package-card').forEach(card => {
-            card.addEventListener('click', function() {
-                // Remove selection from all cards
-                document.querySelectorAll('.package-card').forEach(c => c.classList.remove('selected'));
-                
-                // Add selection to clicked card
-                this.classList.add('selected');
-                
-                // Get package details
-                selectedPackage = this.dataset.package;
-                selectedPrice = this.dataset.price;
-                
-                // Update display
-                const packageInfo = document.getElementById('selectedPackage');
-                const packageDisplay = document.getElementById('packageDisplay');
-                packageDisplay.textContent = `${this.querySelector('.package-name').textContent} - KSH ${selectedPrice}`;
-                packageInfo.style.display = 'block';
-                
-                // Enable pay button
-                const payButton = document.getElementById('payButton');
-                payButton.disabled = false;
-                payButton.textContent = `Pay KSH ${selectedPrice} via M-Pesa`;
-            });
-        });
+//get price according to click
+const button = document.querySelectorAll(".pay-btn");
 
-        // Handle form submission
-        document.getElementById('paymentForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const phoneNumber = document.getElementById('phoneNumber').value;
-            // const userName = document.getElementById('userName').value;
-            async() =>{
-                try {
-                await fetch("http://0.0.0.0:8000",{
-                    method:"POST",
-                    body:JSON.stringify({phone_num:phoneNumber ,amount:selectedPrice })
-                }).then((response)=> response.json()).then((response) =>{
-                    console.log(response)
-                }).catch((error) => {
-                    console.error("error:",error.message)
-                });
+button.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const card = btn.closest(".package-card");
+    selectedPackage = card.querySelector(".package-name").textContent;
+    selectedPrice = card.querySelector(".package-price").textContent;
 
-        }
-                
-             catch (error) {
-                
-                console.error("error:",error.message)
-         }
-           
-        }
-            
-            // Validate phone number
-            if (phoneNumber.length !== 10 || !phoneNumber.match(/^[0-9]{10}$/)) {
-                showError('Please enter a valid 10-digit phone number');
-                return;
-            }
-            
-            if (!selectedPackage) {
-                showError('Please select a package first');
-                return;
-            }
-            
-            // Process payment (you'll implement the actual M-Pesa API call here)
-            // processPayment(phoneNumber, userName, selectedPackage, selectedPrice);
-        });
+    console.log(selectedPackage);
+    console.log(selectedPrice);
+    dialog.showModal();
+  });
+});
 
-        
-         
+submitPhone.addEventListener("click", async (e) => {
+  e.preventDefault();
+  const phone = document.getElementById("phoneNumber").value;
+  console.log(phone);
+  if (phone.length < 10) {
+    alert("Enter a valid phone number!");
+    return;
+  }
 
-        // function processPayment(phone, name, package, amount) {
-        //     // Disable button during processing
-        //     const payButton = document.getElementById('payButton');
-        //     payButton.disabled = true;
-        //     payButton.textContent = 'Processing...';
-            
-        //     // Simulate payment processing (replace with actual M-Pesa API call)
-        //     setTimeout(() => {
-        //         showSuccess();
-                
-        //         // Reset form after 3 seconds
-        //         setTimeout(() => {
-        //             document.getElementById('paymentForm').reset();
-        //             document.querySelectorAll('.package-card').forEach(c => c.classList.remove('selected'));
-        //             document.getElementById('selectedPackage').style.display = 'none';
-        //             payButton.disabled = true;
-        //             payButton.textContent = 'Select a Package to Continue';
-        //             hideMessages();
-        //         }, 3000);
-        //     }, 2000);
-            
-        //     // Log payment details for your backend
-        //     console.log({
-        //         phone: phone,
-        //         name: name,
-        //         package: package,
-        //         amount: amount,
-        //         timestamp: new Date().toISOString()
-        //     });
-        // }
+  //prepare data
+  const data = {
+    phone: phone,
+    price: selectedPrice,
+  };
 
-        function showSuccess() {
-            const successMsg = document.getElementById('successMessage');
-            successMsg.style.display = 'block';
-            setTimeout(() => successMsg.style.display = 'none', 5000);
-        }
+  console.log("sending to fastdaraja logic:", data);
+  async () => {
+    try {
+      const response = await fetch("https://daraja-a-pi.vercel.app/stk_push", {
+        method: "POST",
+        headers: {
+          "content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
 
-        function showError(message) {
-            const errorMsg = document.getElementById('errorMessage');
-            errorMsg.textContent = '✗ ' + message;
-            errorMsg.style.display = 'block';
-            setTimeout(() => errorMsg.style.display = 'none', 5000);
-        }
-
-        function hideMessages() {
-            document.getElementById('successMessage').style.display = 'none';
-            document.getElementById('errorMessage').style.display = 'none';
-        }
-    
+      const result = await response.json();
+      console.log(result);
+      alert("payment request sent successfully!!!");
+    } catch (error) {
+      console.error("error:", error.message);
+    }
+  };
+  dialog.close();
+});
