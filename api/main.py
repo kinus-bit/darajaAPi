@@ -154,7 +154,7 @@ def stk_code(request: PayRequest):
     except Exception as e:
         return {"error": str(e)}
 
-@app.post("/generate_token")
+@app.post("/generate_QR")
 def generate_qr():
     try:
         generate = GenerateQR()
