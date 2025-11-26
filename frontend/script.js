@@ -34,6 +34,8 @@ submitPhone.addEventListener("click", async (e) => {
   };
 
   console.log("sending to fastdaraja logic:", data);
+
+  //posting data to get the prompt on the phone
   async () => {
     try {
       const response = await fetch("http://0.0.0.0:8000/stk_push", {
@@ -45,11 +47,33 @@ submitPhone.addEventListener("click", async (e) => {
       });
 
       const result = await response.json();
-      console.log(result);
+      console.log("data sent to backend" + result);
       alert("payment request sent successfully!!!");
     } catch (error) {
       console.error("error:", error.message);
     }
   };
+
   dialog.close();
 });
+
+//getting the access token
+document.addEventListener("DOMContentLoaded",async () => {
+    try {
+		//fetch return a promise and you use .then to resolve
+      await fetch("http://0.0.0.0:8000/get_token",
+		{
+			method: "GET",
+			headers: {
+			  "content-Type": "application/json",
+			}
+		  }
+	  )
+	  .then(response => response.json())
+	  .then(data => console.log(data))
+	  
+    } catch (error) {
+      console.error("error:", error.message);
+    }
+  });
+
