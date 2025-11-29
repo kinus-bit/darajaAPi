@@ -36,7 +36,7 @@ submitPhone.addEventListener("click", async (e) => {
 
   //posting data to get the prompt on the phone
     try {
-      const response = await fetch("http://127.0.0.1:8000/stk_push", {
+      const response = await fetch("https://daraja-a-pi.vercel.app/stk_push", {
         method: "POST",
         headers: {
           "content-Type": "application/json",
@@ -71,7 +71,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   try {
     //fetch return a promise and you use .then to resolve
     //by returning a response
-    const response = await fetch("http://127.0.0.1:8000/access", {
+	//http://127.0.0.1:8000 -for local testing
+    const response = await fetch("https://daraja-a-pi.vercel.app/access", {
       method: "GET",
       headers: {
         "content-Type": "application/json",
