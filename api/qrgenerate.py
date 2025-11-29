@@ -40,4 +40,15 @@ def GenerateQR():
     
     except Exception as error:
         return {'error':str(error)}
+    
+    
+    
+    # @app.post("/generate_QR")
+# def generate_qr():
+#     try:
+#         generate = GenerateQR()
+#         return generate
+#     except Exception as e:
+#         return {"error": str(e)}
+
         
