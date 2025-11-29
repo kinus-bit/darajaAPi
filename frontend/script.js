@@ -2,7 +2,6 @@ let selectedPackage = null;
 let selectedPrice = null;
 const dialog = document.getElementById("phoneDialog");
 const submitPhone = document.getElementById("payButton");
-
 //get price according to click
 const button = document.querySelectorAll(".pay-btn");
 
@@ -36,9 +35,8 @@ submitPhone.addEventListener("click", async (e) => {
   console.log("sending to fastdaraja logic:", data);
 
   //posting data to get the prompt on the phone
-  async () => {
     try {
-      const response = await fetch("http://0.0.0.0:8000/stk_push", {
+      const response = await fetch("http://127.0.0.1:8000/stk_push", {
         method: "POST",
         headers: {
           "content-Type": "application/json",
@@ -46,34 +44,66 @@ submitPhone.addEventListener("click", async (e) => {
         body: JSON.stringify(data),
       });
 
-      const result = await response.json();
-      console.log("data sent to backend" + result);
-      alert("payment request sent successfully!!!");
+	  const result = await response.json();
+	  console.log("Response from backend:", result);
+	  
+	  // Check if there's an error in the response
+	  if (result.error) {
+		alert(`Error: ${result.error}`);
+	  } else if (result.ResponseCode === "0") {
+		alert("Payment request sent successfully! Check your phone.");
+	  } else {
+		alert(`Payment request sent. Response: ${result.ResponseDescription || JSON.stringify(result)}`);
+	  }
+	  dialog.close();
     } catch (error) {
-      console.error("error:", error.message);
+		console.error("Error:", error);
+		alert(`Failed to send payment request: ${error.message}`);
     }
-  };
 
-  dialog.close();
+
+ 
 });
 
 //getting the access token
-document.addEventListener("DOMContentLoaded",async () => {
-    try {
-		//fetch return a promise and you use .then to resolve
-      await fetch("http://0.0.0.0:8000/get_token",
-		{
-			method: "GET",
-			headers: {
-			  "content-Type": "application/json",
-			}
-		  }
-	  )
-	  .then(response => response.json())
-	  .then(data => console.log(data))
-	  
-    } catch (error) {
-      console.error("error:", error.message);
-    }
-  });
+//DOMContentLoaded - is for ensuring the dom is fully loaded
+document.addEventListener("DOMContentLoaded", async () => {
+  try {
+    //fetch return a promise and you use .then to resolve
+    //by returning a response
+    const response = await fetch("http://127.0.0.1:8000/access", {
+      method: "GET",
+      headers: {
+        "content-Type": "application/json",
+      },
+    });
 
+	
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+   
+	const data = await response.json();
+	console.log("Token data:", data);
+   
+	const tokenContainer = document.getElementById("token");
+    
+    // Check if token exists
+    if (data.access_token) {
+      const div = document.createElement("div");
+      div.innerHTML = `
+        <h3>✅ Backend Connected</h3>
+        <p><strong>Access Token:</strong> ${data.access_token.substring(0, 20)}...</p>
+        <p><strong>Expires In:</strong> ${data.expires_in} seconds</p>
+      `;
+      tokenContainer.appendChild(div);
+    } else if (data.error) {
+      tokenContainer.innerHTML = `<p style="color: red;">❌ Error: ${data.error}</p>`;
+    }
+  } catch (error) {
+    console.error("Error fetching token:", error.message);
+    document.getElementById("token").innerHTML = `
+      <p style="color: red;">❌ Cannot connect to backend: ${error.message}</p>
+    `;
+  }
+});
