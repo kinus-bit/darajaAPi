@@ -50,7 +50,7 @@ def stk_push():
    "TransactionType": "CustomerPayBillOnline",    
    "Amount": amount,    
    "PartyA":phone_num,      
-   "PartyB":"174379",    
+   "PartyB":"522522",    
    "PhoneNumber":phone_num,    
    "CallBackURL": "https://mydomain.com/pat",    
    "AccountReference":bank,    
