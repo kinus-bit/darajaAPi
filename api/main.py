@@ -62,7 +62,7 @@ def getaccess_token():
 #post url
 STK_URL = "https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest"
 
-SHORT_CODE = "174379"
+SHORT_CODE = "522522"
 
 #build by encripting shortcode+passkey+timestamp
 PASS_KEY = "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919"
@@ -101,7 +101,7 @@ def stk_push(phone: str, price: str):
    "TransactionType": "CustomerPayBillOnline",    
    "Amount": price,    
    "PartyA":phone,      
-   "PartyB":"174379",    
+   "PartyB":"522522",    
    "PhoneNumber":phone,    
    "CallBackURL": "https://mydomain.com/pat",    
    "AccountReference":bank,    
